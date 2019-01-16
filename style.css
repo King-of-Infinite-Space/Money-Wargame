@@ -224,6 +224,7 @@ input {
     -webkit-transition: 0.15s ease-in-out;
     -moz-transition: 0.15s ease-in-out;
     transition: 0.15s ease-in-out;
+    cursor: pointer;
 }
 .card.selected {
     -webkit-transform: translate(0,calc(-7vh + 2px));
@@ -268,6 +269,7 @@ input {
     width: 100%;
     font-size: large;
     display: table; /*让元素以表格形式渲染*/
+    cursor: pointer;
 }
 .menuItemText {
     display: table-cell;/*让元素以表格的单元素格形式渲染*/
