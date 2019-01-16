@@ -196,7 +196,8 @@ function addListeners (room) {
             newDeath[message.playerId] = message.reason
         }
         if (message.type=='turnFinish'){
-            iziToast.hide({transitionOut: 'fadeOutUp'}, document.querySelector('.iziToast'));
+            //iziToast.hide({transitionOut: 'fadeOutUp'}, document.querySelector('.iziToast'));
+            $('.iziToast-capsule').hide();
             $('.flipContainer').addClass('flipped')
             for (var player in room.state.players) {
                 if (room.state.players[player].state=='alive') {
@@ -209,7 +210,8 @@ function addListeners (room) {
             var icons = ['😜','😎']
             $('.deadText')[pId].innerHTML = icons[Math.floor(Math.random()*icons.length)];
             $('.deadText')[pId].style.fontSize = '4em';
-            iziToast.hide({transitionOut: 'fadeOutUp'}, document.querySelector('.iziToast'));
+            //iziToast.hide({transitionOut: 'fadeOutUp'}, document.querySelector('.iziToast'));
+            $('.iziToast-capsule').hide();
             popup('info',`Player${pId+1}获胜！`,'',10000)
             setTimeout(window.location.reload(),10000)
         }
