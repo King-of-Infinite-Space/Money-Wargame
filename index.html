@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>armsstrong</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link rel="stylesheet" href="./lib/iziToast.min.css">
+        <link rel="icon" type="image/png" href="favicon.png"/>
+        <script src="./lib/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="./lib/iscroll.js"></script>
+        <script type="text/javascript" src="./lib/iziToast.min.js"></script>
+        <script type="text/javascript" src="./lib/colyseus.js"></script>
+        <script type="text/javascript" src="client.js"></script> 
+        <link href='http://cdn.webfont.youziku.com/webfonts/nomal/126705/47844/5c303367f629d9049845ef0c.css' rel='stylesheet' type='text/css' />
+        <link type="text/css" rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <div id='cover'>
+            <div class='titlebar'>
+                <div>🔫💪</div>
+                <div>👏🏻armsstrong👏🏻</div>
+            </div>
+            <div id='btns'>
+                <div id='btn-create' class='btn'>创建</div>
+                <input type='text' value='请输入游戏人数或房间号'></input>
+                <div id='btn-join' class='btn'>加入</div>
+            </div>
+            <div id='bottombar'>
+                <div id='quote'>"So I'm gonna buy a gun and start a war, if you can tell me something worth fighting for..."</div>
+                <div id='info'>armsstrong (Money-Wargame) 👏🏻 ©®εατεδ ву PLH</div>
+            </div>
+        </div>
+        <div id='mainWindow'>
+            <div id='topBox'>
+                <div class='playerBox'>
+                    <div class='playerName'>Waiting for player...</div>
+                    <div class='playerInfo'>
+                        <div>#️⃣<div class='turnNo'>0</div></div>
+                        <div>❤️<div class='health'>3</div></div>
+                        <div>💰<div class='money'>5</div></div>
+                    </div>
+                    <div class='playerInfo'>
+                        <div>🔫<div class='weapons'></div></div><div></div>
+                    </div>
+                    <hr/>
+                    <div class="topCardWrapper">
+                        <div class='flipContainer'>
+                            <div class="topCard cardBack"><div class='cardBackText'>👏🏻</div></div>
+                            <div class="topCard cardFront"><div class='cardFrontText cardText'></div></div>
+                            <div class='deadText'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id='bottomBox'>
+                <div id='leftMenu'>
+                    <div class='leftMenuItems' id='tab-others'>
+                        <div class='menuItemText'>👔</div>
+                    </div>
+                    <div class='leftMenuItems' id='tab-buy'>
+                        <div class='menuItemText'>💸</div>
+                    </div>
+                    <div class='leftMenuItems' id='tab-use'>
+                        <div class='menuItemText'>⚔️</div>
+                    </div>
+                    <div class='leftMenuItems' id='tab-defend'>
+                        <div class='menuItemText'>🛡️</div>
+                    </div>
+                </div>
+                <div id='cardBox'>
+                    <div id='cardWrapper'>
+                        <div id="card0" class="card others"><div class='cardText'>攒</div></div>
+                        <div id="card1" class="card others"><div class='cardText'>警</div></div>
+                        <div id="card2" class="card others"><div class='cardText'>偷</div></div>
+                        <div id="card3" class="card buy"><div class='cardText'>买小刀</div></div>
+                        <div id="card4" class="card buy"><div class='cardText'>买匕首</div></div>
+                        <div id="card5" class="card buy"><div class='cardText'>买手枪</div></div>
+                        <div id="card6" class="card buy"><div class='cardText'>买冲锋</div></div>
+                        <div id="card7" class="card buy"><div class='cardText'>买步枪</div></div>
+                        <div id="card8" class="card buy"><div class='cardText'>买狙击</div></div>
+                        <div id="card9" class="card buy"><div class='cardText'>买轻机</div></div>
+                        <div id="card10" class="card buy"><div class='cardText'>买重机</div></div>
+                        <div id="card11" class="card buy"><div class='cardText'>买榴弹</div></div>
+                        <div id="card12" class="card buy"><div class='cardText'>买炸弹</div></div>
+                        <div id="card13" class="card buy"><div class='cardText'>买炮弹</div></div>
+                        <div id="card14" class="card buy"><div class='cardText'>买导弹</div></div>
+                        <div id="card15" class="card buy"><div class='cardText'>买中子弹</div></div>
+                        <div id="card16" class="card buy"><div class='cardText'>买原子弹</div></div>
+                        <div id="card17" class="card buy"><div class='cardText'>买原子弹+</div></div>
+                        <div id="card18" class="card buy"><div class='cardText'>买氢弹</div></div>
+                        <div id="card19" class="card buy"><div class='cardText'>买氢弹+</div></div>
+                        <div id="card20" class="card use"><div class='cardText'>Tsa</div></div>
+                        <div id="card21" class="card use"><div class='cardText'>Shua</div></div>
+                        <div id="card22" class="card use"><div class='cardText'>Biu</div></div>
+                        <div id="card23" class="card use"><div class='cardText'>Dddddda</div></div>
+                        <div id="card24" class="card use"><div class='cardText'>Teng</div></div>
+                        <div id="card25" class="card use"><div class='cardText'>Piu</div></div>
+                        <div id="card26" class="card use"><div class='cardText'>Zzzzzda</div></div>
+                        <div id="card27" class="card use"><div class='cardText'>ZZZZZDa</div></div>
+                        <div id="card28" class="card use"><div class='cardText'>榴弹</div></div>
+                        <div id="card29" class="card use"><div class='cardText'>炸弹</div></div>
+                        <div id="card30" class="card use"><div class='cardText'>安炸弹</div></div>
+                        <div id="card31" class="card use"><div class='cardText'>炮弹</div></div>
+                        <div id="card32" class="card use"><div class='cardText'>Ziu~ Dong</div></div>
+                        <div id="card33" class="card use"><div class='cardText'>中子弹</div></div>
+                        <div id="card34" class="card use"><div class='cardText'>原子弹/原子弹+</div></div>
+                        <div id="card35" class="card use"><div class='cardText'>氢弹/氢弹+</div></div>
+                        <div id="card36" class="card defend"><div class='cardText'>防小刀</div></div>
+                        <div id="card37" class="card defend"><div class='cardText'>防匕首</div></div>
+                        <div id="card38" class="card defend"><div class='cardText'>防手枪</div></div>
+                        <div id="card39" class="card defend"><div class='cardText'>防冲锋</div></div>
+                        <div id="card40" class="card defend"><div class='cardText'>防步枪</div></div>
+                        <div id="card41" class="card defend"><div class='cardText'>防狙击</div></div>
+                        <div id="card42" class="card defend"><div class='cardText'>防轻机</div></div>
+                        <div id="card43" class="card defend"><div class='cardText'>防重机</div></div>
+                        <div id="card44" class="card defend"><div class='cardText'>防榴弹</div></div>
+                        <div id="card45" class="card defend"><div class='cardText'>防炸弹</div></div>
+                        <div id="card46" class="card defend"><div class='cardText'>防炮弹</div></div>
+                        <div id="card47" class="card defend"><div class='cardText'>防导弹</div></div>
+                        <div id="card48" class="card defend"><div class='cardText'>防中子弹</div></div>
+                        <div id="card49" class="card defend"><div class='cardText'>防原子弹</div></div>  
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </body>
+</html>
