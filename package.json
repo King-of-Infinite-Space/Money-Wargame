@@ -4,8 +4,7 @@
   "description": "MWG",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./server.js",
-    "start-production": "node ./server.js"
+    "start": "node ./server.js"
   },
   "author": "PLH",
   "license": "MIT",
@@ -13,8 +12,5 @@
     "colyseus": "^0.9.3",
     "express": "^4.13.4",
     "serve-favicon": "^2.5.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.17.3"
   }
 }
