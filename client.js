@@ -1,8 +1,4 @@
-//import Clock from '@gamestdio/timer';
-//import * as Colyseus from "colyseus.js";
 //💲  ✎ 🖤
-//var clock = new Clock();
-
 // define endpoint based on environment
 const endpoint = (window.location.hostname.indexOf("herokuapp") === -1)
   ? "ws://localhost:3553" // development (local)
