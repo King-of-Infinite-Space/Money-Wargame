@@ -257,6 +257,12 @@ function getAvailableRooms() {
 }
 
 $(document).ready(function() {
+    var container = $('#bottomBox')[0];
+    container.addEventListener('touchstart', () => {});
+    container.addEventListener('touchend', () => {});
+    container.addEventListener('touchcancel', () => {});
+    container.addEventListener('touchmove', () => {});
+
     $('input')[0].onfocus = function(){this.value=''};
     $('input')[0].onblur = function(){if (this.value == '') this.value='请输入游戏人数或房间号'};
     //开始界面按钮效果

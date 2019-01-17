@@ -262,7 +262,7 @@ input {
 
 .cardText {
     /*font-size:1.8em;*/
-    font-size:calc(0.45*(14*var(--ah) - 3px));;
+    font-size:calc(0.4*(14*var(--ah) - 3px));
     font-family: 'AaFangmeng16c172140b1eef1', sans-serif;
 }
 
