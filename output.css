@@ -76,6 +76,11 @@ input {
     text-align: center;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
 #info {
     font-size: 0.8em;
     color: grey

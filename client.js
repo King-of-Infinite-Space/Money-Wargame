@@ -90,7 +90,6 @@ function refreshGame(){
 }
 
 function addListeners (room) {
-    var myPlayerId;
     var mySessionId;
     var maxClients;
     var newDeath = {};
@@ -104,6 +103,11 @@ function addListeners (room) {
         console.log("LEFT ROOM", arguments);
         //popup('info','已离开房间')
     });
+    room.onError.add(function(err) {
+        console.log("oops, error ocurred:");
+        console.log(err);
+    });
+
     /*
     room.onStateChange.add(function(state) {
         if (playerId == undefined) {
@@ -128,7 +132,13 @@ function addListeners (room) {
           console.log("player id:", change.path.id);
         }
       });*/
-
+    /*
+    room.listen("players/:id/:attribute", (change) => {
+        console.log(change.operation); // => "replace" (can be "add", "remove" or "replace")
+        console.log(change.path["id"]); // => "f98h3f"
+        console.log(change.path["attribute"]); // => "y"
+        console.log(change.value); // => 1
+    })*/
     room.onMessage.add(function(message) {
         console.log("server just sent this message:");
         console.log(message);
@@ -161,7 +171,7 @@ function addListeners (room) {
             }
         }
         if (message.type=='gameStart'){
-            popup('info','游戏即将开始...','',2000)
+            popup('info','游戏即将开始...','',2000,'topRight')
             for (var i = 0; i < maxClients; i++){
                 $('.turnNo')[i].innerHTML = room.state.currentTurn
             }
@@ -173,6 +183,8 @@ function addListeners (room) {
             }
             newDeath = {}
             $('.topCard').animate({opacity: 0},150)
+            $('.selected').removeClass('selected');
+            $('.card').css('opacity',1);
             $('.cardFront, .cardBack').hide();
             $('.flipContainer').removeClass('flipped')
             $('.cardFront').removeClass('buy use others defend')
@@ -192,21 +204,19 @@ function addListeners (room) {
             // prepare the other face
             $('.cardFrontText')[message.playerId].innerHTML = message.move.fullname
             $('.cardFront').eq(message.playerId).addClass(message.move.type)
+            if (message.playerId==room.state.players[mySessionId].playerId) $('.iziToast-capsule').hide();
         }
         if (message.type=='out'){
             newDeath[message.playerId] = message.reason
         }
         if (message.type=='turnFinish'){
             //iziToast.hide({transitionOut: 'fadeOutUp'}, document.querySelector('.iziToast'));
-            $('.iziToast-capsule').hide();
             $('.flipContainer').addClass('flipped')
             for (var player in room.state.players) {
                 if (room.state.players[player].state=='alive') {
                     updatePlayerInfo(room.state.players[player])
                 }
             }
-            $('.card').css('opacity',1);
-            
         }
         if (message.type=='end'){
             var pId = message.playerId
@@ -216,16 +226,9 @@ function addListeners (room) {
             //iziToast.hide({transitionOut: 'fadeOutUp'}, document.querySelector('.iziToast'));
             $('.iziToast-capsule').hide();
             popup('info',`Player${pId+1}获胜！`,'',10000)
-            setTimeout(window.location.reload(),10000)
+            setTimeout(function(){window.location.reload()},10000)
         }
       });
-    /*
-    room.listen("players/:id/:attribute", (change) => {
-        console.log(change.operation); // => "replace" (can be "add", "remove" or "replace")
-        console.log(change.path["id"]); // => "f98h3f"
-        console.log(change.path["attribute"]); // => "y"
-        console.log(change.value); // => 1
-    })*/
 }
 
 function create (number) {
@@ -327,26 +330,26 @@ $(document).ready(function() {
         $('.'+ cardType).show();
         var numCards = $('.'+ cardType).length;
         //refresh iScroll
-        var newWidth = `calc(${numCards+0.5}*${$('.card').css('width')})`;
+        var newWidth = `calc(${numCards+1}*(${$('.card').css('width')}+2px))`;
         //alert(newWidth);
         $('#cardWrapper').css({'width': newWidth});
         myScroll.refresh();
     });
 
-    $('.card.active').click(function(){
+    $('.card').click(function(){
+        if ($(this).hasClass('active')){
+            if (! $(this).hasClass("selected")){
+                $('.selected').removeClass('selected'); 
+                $(this).addClass("selected");
+            }
+            else {
+                //出牌
+                room.send({move: parseInt(this.id.slice(4))})
+                $(".card").removeClass("active");
+                $(this).animate({opacity: 0},100);
+            }
+        }
         // first click, the card moves up
         // click on the selected card: play this card
-        if (! $(this).hasClass("selected")){
-            $('.selected').removeClass('selected'); 
-            $(this).addClass("selected");
-        }
-        else {
-            //出牌
-            room.send({move: parseInt(this.id.slice(4))})
-            $(".card").removeClass("active");
-            $(this).animate({opacity: 0},150);
-            $('.selected').removeClass('selected');
-        }
     });
-   
 });

@@ -258,9 +258,9 @@ module.exports = class GameRoom extends Room {
   }
 
   onLeave (client) {
-    this.broadcast({type:'leave', clientId: client.sessionId, playerId: this.state.players[clientId].playerId})
-    if (gameOn) {
-        this.state.alivePlayers = this.state.alivePlayers.filter(item => item !== cId);
+    this.broadcast({type:'leave', clientId: client.sessionId, playerId: this.state.players[client.sessionId].playerId})
+    if (this.state.gameOn) {
+        this.state.alivePlayers = this.state.alivePlayers.filter(item => item !== client.sessionId);
         this.state.players[client.sessionId].state = 'dead';
     }
     else delete this.state.players[ client.sessionId ];
