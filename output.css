@@ -262,7 +262,7 @@ input {
 
 .cardText {
     /*font-size:1.8em;*/
-    font-size:calc(0.5*(14*var(--ah) - 3px));;
+    font-size:calc(0.45*(14*var(--ah) - 3px));;
     font-family: 'AaFangmeng16c172140b1eef1', sans-serif;
 }
 
@@ -293,4 +293,4 @@ input {
 .menuItemText {
     display: table-cell;/*让元素以表格的单元素格形式渲染*/
     vertical-align: middle;/*使用元素的垂直对齐*/
-}				
+}

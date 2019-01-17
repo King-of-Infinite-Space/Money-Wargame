@@ -171,11 +171,12 @@ function addListeners (room) {
                 playerOut(pId, newDeath[pId])
             }
             newDeath = {}
-            
+            $('.topCard').animate({opacity: 0},150)
+            $('.cardFront, .cardBack').hide();
             $('.flipContainer').removeClass('flipped')
             $('.cardFront').removeClass('buy use others defend')
             if (room.state.players[mySessionId].state == 'alive'){
-                $(".card").css("pointer-events","auto");
+                $(".card").addClass("active");
                 popup('info','请出牌','',5000)
             }
             else if (room.state.players[mySessionId].state == 'dead'){
@@ -205,8 +206,6 @@ function addListeners (room) {
             }
             $('.card').css('opacity',1);
             
-            $('.topCard').animate({opacity: 0},150)
-            $('.cardFront, .cardBack').hide();
         }
         if (message.type=='end'){
             var pId = message.playerId
@@ -307,7 +306,6 @@ $(document).ready(function() {
     });
 
     var myScroll = new IScroll('#cardBox', {scrollX: true, scrollY: false, mouseWheel: true});
-    $(".card").css("pointer-events","none");
     var unselectedColor = $(".leftMenuItems").css('background-color')
     var selectedColor = $("#bottomBox").css('background-color')
     $(".leftMenuItems")[0].style.backgroundColor = selectedColor;
@@ -322,13 +320,13 @@ $(document).ready(function() {
         $('.'+ cardType).show();
         var numCards = $('.'+ cardType).length;
         //refresh iScroll
-        var newWidth = 'calc(' + ((numCards+0.5) * 14) + 'vh - ' + (numCards *1) + 'px)';
+        var newWidth = `calc(${numCards+0.5}*${$('.card').css('width')})`;
         //alert(newWidth);
         $('#cardWrapper').css({'width': newWidth});
         myScroll.refresh();
     });
 
-    $('.card').click(function(){
+    $('.card.active').click(function(){
         // first click, the card moves up
         // click on the selected card: play this card
         if (! $(this).hasClass("selected")){
@@ -338,7 +336,7 @@ $(document).ready(function() {
         else {
             //出牌
             room.send({move: parseInt(this.id.slice(4))})
-            $(".card").css("pointer-events","none");
+            $(".card").removeClass("active");
             $(this).animate({opacity: 0},150);
             $('.selected').removeClass('selected');
         }
