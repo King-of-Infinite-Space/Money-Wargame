@@ -162,7 +162,7 @@ function addListeners (room) {
             if (message.clientId != mySessionId){//后来的玩家
                 popup('info',`Player${message.playerId+1}已离开`,'',1000,'topLeft')
                 if (room.state.gameOn){
-                    this.playerOut(message.playerId)
+                    playerOut(message.playerId)
                 }
                 else {
                     $('.playerName')[message.playerId].innerHTML = 'Waiting for player...'
@@ -261,12 +261,13 @@ function getAvailableRooms() {
 }
 
 $(document).ready(function() {
+    /*
     var container = $('#bottomBox')[0];
     container.addEventListener('touchstart', () => {});
     container.addEventListener('touchend', () => {});
     container.addEventListener('touchcancel', () => {});
     container.addEventListener('touchmove', () => {});
-
+    */
     $('input')[0].onfocus = function(){this.value=''};
     $('input')[0].onblur = function(){if (this.value == '') this.value='请输入游戏人数或房间号'};
     //开始界面按钮效果
