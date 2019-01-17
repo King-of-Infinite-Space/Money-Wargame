@@ -149,11 +149,15 @@ function addListeners (room) {
             }
         }
         if (message.type == 'leave'){
-            var pId = message.playerId + 1
             if (message.clientId != mySessionId){//后来的玩家
-                popup('info','Player'+pId+'已离开','',1000,'topLeft')
-                $('.playerName')[message.playerId].innerHTML = 'Waiting for player...'
-                $(`.playerBox:eq(${message.playerId}) .playerInfo`).css('display', 'none')
+                popup('info',`Player${message.playerId+1}已离开`,'',1000,'topLeft')
+                if (room.state.gameOn){
+                    this.playerOut(message.playerId)
+                }
+                else {
+                    $('.playerName')[message.playerId].innerHTML = 'Waiting for player...'
+                    $(`.playerBox:eq(${message.playerId}) .playerInfo`).css('display', 'none')
+                }
             }
         }
         if (message.type=='gameStart'){
@@ -167,8 +171,7 @@ function addListeners (room) {
                 playerOut(pId, newDeath[pId])
             }
             newDeath = {}
-            $('.topCard').animate({opacity: 0},150)
-            $('.cardFront, .cardBack').hide();
+            
             $('.flipContainer').removeClass('flipped')
             $('.cardFront').removeClass('buy use others defend')
             if (room.state.players[mySessionId].state == 'alive'){
@@ -200,6 +203,10 @@ function addListeners (room) {
                     updatePlayerInfo(room.state.players[player])
                 }
             }
+            $('.card').css('opacity',1);
+            
+            $('.topCard').animate({opacity: 0},150)
+            $('.cardFront, .cardBack').hide();
         }
         if (message.type=='end'){
             var pId = message.playerId
@@ -332,8 +339,8 @@ $(document).ready(function() {
             //出牌
             room.send({move: parseInt(this.id.slice(4))})
             $(".card").css("pointer-events","none");
-            $(this).addClass("played");
-            setTimeout(function(){$('.selected').removeClass('selected');$('.played').removeClass('played');},150)
+            $(this).animate({opacity: 0},150);
+            $('.selected').removeClass('selected');
         }
     });
    

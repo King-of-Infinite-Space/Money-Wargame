@@ -10,7 +10,8 @@ module.exports = class GameRoom extends Room {
       messages:[],
       currentPlay: {},
       alivePlayers:[],
-      timeout: 5
+      timeout: 5,
+      gameOn: false
     })
     this.maxClients = options.maxClients
     this.setMetadata({rmid: options.rmid});
@@ -29,13 +30,14 @@ module.exports = class GameRoom extends Room {
     thisPlayer.state = 'ready';
     thisPlayer.health = 3;
     thisPlayer.toDie = {reason:'',damage:0};
-    
+    // thisPlayer.result = {'dmg':0, 'def': 0, 'money':0, buy
     console.log("JOINNING NEW ROOM");
     this.broadcast({type:'join', clientId: client.sessionId, playerId: thisPlayer.playerId})
     if (this.clients.length == this.maxClients) {//room is full!
       // this.randomMoveTimeout = this.clock.setTimeout(this.doRandomMove.bind(this, client), TURN_TIMEOUT * 1000);
       // lock this room for new users
       this.lock();
+      this.state.gameOn = true;
       this.broadcast({type:'gameStart'});
       for (var cId in this.state.players) {
         if (this.state.players[cId].state == 'ready') {
@@ -165,7 +167,10 @@ module.exports = class GameRoom extends Room {
         }
         if (thisPlayer.bombed[move.fullname] != undefined){// others or defend被安的炸弹炸死
             this.declareDeath(move.user, 'bombed')
-            if (move.name=='money') move.cost = 0
+            if (move.name=='money') {
+                thisPlayer.money += move.cost;
+                move.cost = 0
+            }
         }
         
         if (maxAtk == 0) {//no weapons used (except for setting bomb)
@@ -220,12 +225,13 @@ module.exports = class GameRoom extends Room {
     // turn finish
     this.clock.setTimeout(this.broadcast.bind(this, {type:'turnFinish'}), 800)
     if (this.state.alivePlayers.length==1) {// game ends
+        this.state.gameOn = false;
         this.clock.setTimeout(this.broadcast.bind(this, {type:'end',playerId: this.state.players[this.state.alivePlayers[0]].playerId}), 1000)
     }
     else {
         this.state.currentPlay = {}
         this.state.currentTurn += 1
-        this.clock.setTimeout(this.broadcast.bind(this, {type:'turnStart'}), 2800)
+        this.clock.setTimeout(this.broadcast.bind(this, {type:'turnStart'}), 3300)
     }
     // start next turn
   };
@@ -253,7 +259,11 @@ module.exports = class GameRoom extends Room {
 
   onLeave (client) {
     this.broadcast({type:'leave', clientId: client.sessionId, playerId: this.state.players[clientId].playerId})
-    delete this.state.players[ client.sessionId ];
+    if (gameOn) {
+        this.state.alivePlayers = this.state.alivePlayers.filter(item => item !== cId);
+        this.state.players[client.sessionId].state = 'dead';
+    }
+    else delete this.state.players[ client.sessionId ];
   }
 
   timeoutMove (client) {

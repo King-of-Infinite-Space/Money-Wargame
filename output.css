@@ -16,15 +16,19 @@
         --aw: 1vh;
         --ah: 1vw;
     }
-    body {transform: rotate(-90deg);
-        transform-origin: 50vh 50vh;
+    body {-webkit-transform: rotate(-90deg);transform: rotate(-90deg);
+        -webkit-transform-origin: 50vh 50vh;
+                transform-origin: 50vh 50vh;
     }
 }
 
 html, body {
     position: relative;
     margin: 0;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
     overflow: hidden;
 }
 body {
@@ -140,20 +144,23 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px;
+    -webkit-perspective: 1000px;
+            perspective: 1000px;
 }
 
 .flipContainer {
     display: flex;
 	transition: 0.2s;
-	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
     position: relative;
     height : calc(28*var(--ah) - 7px);
     width : calc(14*var(--ah) - 3px);
 }
 
 .flipped {
-    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
 }
 
 .topCard {
@@ -161,7 +168,8 @@ input {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden;/**/
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;/**/
     box-sizing: border-box;
     height : calc(28*var(--ah) - 7px);
     width : calc(14*var(--ah) - 3px);
@@ -170,10 +178,13 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+        -ms-writing-mode: tb-lr;
+            writing-mode: vertical-lr;
 }
 .cardFront {
-    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
 }
 .cardBack {
     background-image: radial-gradient(#eeeeee,#bbbbbb, #888888);
@@ -238,12 +249,15 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+        -ms-writing-mode: tb-lr;
+            writing-mode: vertical-lr;
     transition: 0.15s ease-in-out;
     cursor: pointer;
 }
 .card.selected {
-    transform: translate(0,calc(-7*var(--ah) + 2px));
+    -webkit-transform: translate(0,calc(-7*var(--ah) + 2px));
+            transform: translate(0,calc(-7*var(--ah) + 2px));
 }
 
 .cardText {
