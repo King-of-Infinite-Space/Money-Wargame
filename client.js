@@ -165,6 +165,7 @@ function addListeners (room) {
             for (var i = 0; i < maxClients; i++){
                 $('.turnNo')[i].innerHTML = room.state.currentTurn
             }
+            $(".card").addClass("active");
         }
         if (message.type=='turnStart'){
             for (var pId in newDeath) {
