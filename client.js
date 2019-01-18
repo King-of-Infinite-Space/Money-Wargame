@@ -261,13 +261,12 @@ function getAvailableRooms() {
 }
 
 $(document).ready(function() {
-    /*
     var container = $('#bottomBox')[0];
     container.addEventListener('touchstart', () => {});
     container.addEventListener('touchend', () => {});
     container.addEventListener('touchcancel', () => {});
     container.addEventListener('touchmove', () => {});
-    */
+    
     $('input')[0].onfocus = function(){this.value=''};
     $('input')[0].onblur = function(){if (this.value == '') this.value='请输入游戏人数或房间号'};
     //开始界面按钮效果
@@ -336,8 +335,8 @@ $(document).ready(function() {
         $('#cardWrapper').css({'width': newWidth});
         myScroll.refresh();
     });
-
-    $('.card').click(function(){
+    //var clickEvent = 'ontouchstart' in document.documentElement? 'touchend': 'click'
+    $('.card').on('vclick', function(){
         if ($(this).hasClass('active')){
             if (! $(this).hasClass("selected")){
                 $('.selected').removeClass('selected'); 

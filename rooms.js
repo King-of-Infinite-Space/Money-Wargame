@@ -105,9 +105,17 @@ module.exports = class GameRoom extends Room {
     var toJudge = [];
     for (var player in currentPlay) {
         var move = currentPlay[player]
-        toJudge.push(move);
-        if (!this.validate(move)) this.declareDeath(move.user, 'invalid')
-        else {// invalid moves are not affective, but will still be judged
+        if (!this.validate(move)) {
+            this.declareDeath(move.user, 'invalid')
+            move.cost = 0;
+            move.atk = 0;
+            move.def = 0;
+            move.special = '';
+            move.fullname = '';
+            move.name = '';
+            move.type = 'invalid'
+        }
+        else {// invalid moves are not effective, but will still be judged
             // 步枪和狙击
             if (move.special=='setbomb') {
                 setBomb += 1;
@@ -122,6 +130,7 @@ module.exports = class GameRoom extends Room {
             if (move.name == 'steal'){thief.push(move)};
             if (move.name == 'police'){police +=1};
         }
+        toJudge.push(move);
     };
     return [toJudge, [setBomb, maxAtkMove, thief, police, atk5.length -1]]
     // last 3 are counts
@@ -262,6 +271,10 @@ module.exports = class GameRoom extends Room {
     if (this.state.gameOn) {
         this.state.alivePlayers = this.state.alivePlayers.filter(item => item !== client.sessionId);
         this.state.players[client.sessionId].state = 'dead';
+        if (this.state.alivePlayers.length==1) {// game ends
+            this.state.gameOn = false;
+            this.broadcast({type:'end',playerId: this.state.players[this.state.alivePlayers[0]].playerId})
+        }
     }
     else delete this.state.players[ client.sessionId ];
   }
