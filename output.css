@@ -88,16 +88,15 @@ a {
 
 #mainWindow {
     display: none;
-    flex-direction: column;
-    justify-content: flex-start;
     height: 100%;
     width:100%;
 }
 
 #topBox {
-    height: calc(72*var(--ah));
+    height: calc(70*var(--ah));
     width: 100%;
     top: 0px;
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: stretch;
@@ -158,8 +157,8 @@ a {
 	-webkit-transform-style: preserve-3d;
 	        transform-style: preserve-3d;
     position: relative;
-    height : calc(28*var(--ah) - 7px);
-    width : calc(14*var(--ah) - 3px);
+    height : calc(30*var(--ah) - 7px);
+    width : calc(15*var(--ah) - 3px);
 }
 
 .flipped {
@@ -175,8 +174,8 @@ a {
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;/**/
     box-sizing: border-box;
-    height : calc(28*var(--ah) - 7px);
-    width : calc(14*var(--ah) - 3px);
+    height : calc(30*var(--ah) - 7px);
+    width : calc(15*var(--ah) - 3px);
     border: 3px solid white;
     /*box-shadow: 0 1px 8px #666;*/
     display: flex;
@@ -202,7 +201,9 @@ a {
 }
 
 #bottomBox {
-    height:calc(28*var(--ah));
+    height:calc(30*var(--ah));
+    position: fixed;
+    top: calc(70*var(--ah));
     width: 100%;
     background-color: hsl(0, 0%, 80%);
     z-index: 1;
@@ -238,8 +239,8 @@ a {
 .card {
     z-index: 99;
     box-sizing: border-box;
-    height : calc(28*var(--ah) - 7px);
-    width : calc(14*var(--ah) - 3px);
+    height : calc(30*var(--ah) - 7px);
+    width : calc(15*var(--ah) - 3px);
     float: left;
     border: 3px solid white;
     margin-right: 2px;
@@ -260,7 +261,7 @@ a {
 
 .cardText {
     /*font-size:1.8em;*/
-    font-size:calc(0.4*(14*var(--ah) - 3px));
+    font-size:calc(0.4*(15*var(--ah) - 3px));
     font-family: 'AaFangmeng16c172140b1eef1', sans-serif;
 }
 
