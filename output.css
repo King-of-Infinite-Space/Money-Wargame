@@ -29,7 +29,7 @@ html, body {
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
-    overflow: hidden;
+    overflow: auto;
 }
 body {
     width: calc(100*var(--aw));
