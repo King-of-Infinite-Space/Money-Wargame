@@ -95,9 +95,8 @@ a {
 }
 
 #topBox {
-    height: 72%;
+    height: calc(72*var(--ah));
     width: 100%;
-    position: fixed;
     top: 0px;
     display: flex;
     justify-content: space-between;
@@ -203,10 +202,8 @@ a {
 }
 
 #bottomBox {
-    height:28%;
+    height:calc(28*var(--ah));
     width: 100%;
-    position: fixed;
-    bottom: 0px;
     background-color: hsl(0, 0%, 80%);
     z-index: 1;
     display: flex; /*initially hidden*/
@@ -219,17 +216,12 @@ a {
     width: 4%;
     height: 100%;
     text-align: center;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
     z-index: 1;
 }
 
 #cardBox {
     height: 100%;
     width: 100%;
-    position: absolute;
-    left: calc(4*var(--aw));
     overflow-x: visible;
     z-index: 0;
     padding-left: 6px;
