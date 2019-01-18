@@ -24,7 +24,7 @@
 
 html, body {
     position: relative;
-    margin: 0;
+    margin: 0px;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -217,6 +217,7 @@ a {
 #leftMenu {
     background-color: white;
     width: 4%;
+    height: 100%;
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -289,7 +290,9 @@ a {
 
 .leftMenuItems {
     background-color: hsl(0, 0%, 60%);
-    height: calc(25% - 1px);
+    height: 25%;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
     width: 100%;
     font-size: large;
     display: table; /*让元素以表格形式渲染*/
