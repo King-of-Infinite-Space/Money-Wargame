@@ -7,7 +7,7 @@ const endpoint = (window.location.hostname.indexOf("herokuapp") === -1)
 var host = window.document.location.host.replace(/:.*/, '');
 var client = new Colyseus.Client(endpoint);
 var room;
-
+/*
 window.onresize = function(){
     setTimeout(function(){scrollTo(0,0)},10);
     setTimeout(function(){scrollTo(0,window.innerHeight)},50);
@@ -16,7 +16,7 @@ window.onresize = function(){
 window.onload = function(){
     setTimeout(function(){scrollTo(0,0)},10);
     setTimeout(function(){scrollTo(0,window.innerHeight)},50);
-}
+}*/
 
 function popup(type, title, message='', timeout=3000,position='topCenter'){
     const options = {
