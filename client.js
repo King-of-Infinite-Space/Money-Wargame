@@ -231,9 +231,9 @@ function addListeners (room) {
         if (message.type=='end'){
             refreshCards()
             var pId = message.playerId
-            var icons = ['😜','😎']
+            var icons = ['😜','😎','🥇','🎖️','🎉']
             $('.deadText')[pId].innerHTML = icons[Math.floor(Math.random()*icons.length)];
-            $('.deadText')[pId].style.fontSize = '4em';
+            $('.deadText').eq(pId).css({'font-size': '5em', '-webkit-filter':'none','filter':'none'})
             //iziToast.hide({transitionOut: 'fadeOutUp'}, document.querySelector('.iziToast'));
             $('.iziToast-capsule').hide();
             popup('info',`Player${pId+1}获胜！`,'',10000)
