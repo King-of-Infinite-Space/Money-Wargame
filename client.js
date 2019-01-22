@@ -95,7 +95,13 @@ function playerOut(playerId, reason){
     else theBox.innerHTML = randomIcon(['👼','👻']);
 }
 
-function refreshGame(){
+function refreshCards(){
+    $('.topCard').animate({opacity: 0},150)
+    $('.selected').removeClass('selected');
+    $('.card').css('opacity',1);
+    $('.cardFront, .cardBack').hide();
+    $('.flipContainer').removeClass('flipped')
+    $('.cardFront').removeClass('buy use others defend')
 }
 
 function addListeners (room) {
@@ -191,12 +197,7 @@ function addListeners (room) {
                 playerOut(pId, newDeath[pId])
             }
             newDeath = {}
-            $('.topCard').animate({opacity: 0},150)
-            $('.selected').removeClass('selected');
-            $('.card').css('opacity',1);
-            $('.cardFront, .cardBack').hide();
-            $('.flipContainer').removeClass('flipped')
-            $('.cardFront').removeClass('buy use others defend')
+            refreshCards()
             if (room.state.players[mySessionId].state == 'alive'){
                 $(".card").addClass("active");
                 popup('info','请出牌','',5000)
@@ -228,6 +229,7 @@ function addListeners (room) {
             }
         }
         if (message.type=='end'){
+            refreshCards()
             var pId = message.playerId
             var icons = ['😜','😎']
             $('.deadText')[pId].innerHTML = icons[Math.floor(Math.random()*icons.length)];

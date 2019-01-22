@@ -235,7 +235,7 @@ module.exports = class GameRoom extends Room {
     this.clock.setTimeout(this.broadcast.bind(this, {type:'turnFinish'}), 800)
     if (this.state.alivePlayers.length==1) {// game ends
         this.state.gameOn = false;
-        this.clock.setTimeout(this.broadcast.bind(this, {type:'end',playerId: this.state.players[this.state.alivePlayers[0]].playerId}), 1000)
+        this.clock.setTimeout(this.broadcast.bind(this, {type:'end',playerId: this.state.players[this.state.alivePlayers[0]].playerId}), 3300)
     }
     else {
         this.state.currentPlay = {}
