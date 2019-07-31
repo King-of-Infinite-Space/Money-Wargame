@@ -28,7 +28,7 @@ module.exports = class GameRoom extends Room {
     thisPlayer.currentPlay = '';
     thisPlayer.bombed = {};
     thisPlayer.state = 'ready';
-    thisPlayer.health = 3;
+    thisPlayer.health = 1;
     thisPlayer.toDie = {reason:'',damage:0};
     // thisPlayer.result = {'dmg':0, 'def': 0, 'money':0, buy
     console.log("JOINNING NEW ROOM");
