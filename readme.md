@@ -12,5 +12,6 @@ bug难免，如有发现烦请报告
 ##### 预览
 ###### 游戏界面
 <img src="https://b2.bmp.ovh/imgs/2019/07/f7d62b2e723bc689.jpg" alt="游戏界面" width="600px"/> 
+
 ###### 开始界面
 <img src="https://b2.bmp.ovh/imgs/2019/07/28da3a361f38ecd5.jpg" alt="开始界面" width="600px"/> 
