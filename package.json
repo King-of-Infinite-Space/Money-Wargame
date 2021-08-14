@@ -1,13 +1,9 @@
 {
   "name": "money-wargame",
-  "version": "0.9.0",
-  "description": "MWG",
-  "main": "server.js",
+  "version": "0.1.0",
   "scripts": {
-    "start": "node ./server.js"
+    "start": "node ./backend/server.js"
   },
-  "author": "PLH",
-  "license": "MIT",
   "dependencies": {
     "colyseus": "^0.9.3",
     "express": "^4.13.4",
