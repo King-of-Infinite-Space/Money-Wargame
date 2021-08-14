@@ -264,8 +264,7 @@ a {
 .cardText {
     /*font-size:1.8em;*/
     font-size:calc(0.4*(15*var(--ah) - 3px));
-    font-family: 'AaFangmeng1aeb4ccb551eef1', sans-serif;
-    /* https://www.webfont.com/webfont/cssdetail/BAE2C2ACDCD5926141B70DF6F23689AB */
+    font-family: sans-serif;
 }
 
 .defend {
