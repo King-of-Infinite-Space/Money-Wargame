@@ -1,8 +1,6 @@
 ## Money-Wargame (Armsstrong)
 将小学生的拍手游戏搬上了网页。仅作演示用途。
 
-\>>> **[开始玩](http://armsstrong.herokuapp.com/)** <<<
-
 \>> [规则](https://github.com/King-of-Infinite-Space/Money-Wargame/blob/archive/rule.md) <<
 
 建议使用Chrome浏览器打开。手机端应该也可运行。
